@@ -31,18 +31,13 @@ export async function researcher(
   const currentDate = new Date().toLocaleString()
   const result = await streamText({
     model: getModel(useSubModel),
-    maxTokens: 2500,
-    system: `As a professional search expert, you possess the ability to search for any information on the web.
-    or any information on the web.
-    For each user query, utilize the search results to their fullest potential to provide additional information and assistance in your response.
-    If there are any images relevant to your answer, be sure to include them as well.
-    Aim to directly address the user's question, augmenting your response with insights gleaned from the search results.
-    Whenever quoting or referencing information from a specific URL, always explicitly cite the source URL using the [[number]](url) format. Multiple citations can be included as needed, e.g., [[number]](url), [[number]](url).
-    The number must always match the order of the search results.
-    The retrieve tool can only be used with URLs provided by the user. URLs from search results cannot be used.
-    If it is a domain instead of a URL, specify it in the include_domains of the search tool.
-    Please match the language of the response to the user's language. Current date and time: ${currentDate}
-    `,
+    maxTokens: 8000,
+    system: `As a curriculum expert researcher, research always within your own knowledge to enrich each user query with curriculum insights and practical teaching strategies. You can also use the web when needed to fact check or confirm additional data. Leverage your answer to directly address the question with added value. Use relevant images when they enhance the class.
+	•	When quoting or referencing sources, cite them with a [number] format, matching the order of search results.
+	•	Use the retrieve tool only for URLs provided by the user.
+	•	Match response language to the user’s.
+
+Current Date: ${currentDate}`,
     messages: processedMessages,
     tools: getTools({
       uiStream,

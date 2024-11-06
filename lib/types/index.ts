@@ -107,3 +107,21 @@ export type SearXNGSearchResults = {
   number_of_results?: number
   query: string
 }
+
+
+export type Lesson = {
+  warm_up: string;
+  class: {
+    content: string;
+    media?: {
+      type: 'image' | 'video';
+      url: string;
+      description?: string;
+    }[];
+  };
+  class_activity: {
+    activity: string;
+    questions: string[];
+  };
+  class_conclusion: string;
+};
